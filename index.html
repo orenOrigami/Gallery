@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Media Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .gallery-container {
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        .media-item {
+            display: none;
+        }
+        .media-item.active {
+            display: block;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="media-item active">
+            <h3>Image 1</h3>
+            <img src="https://example.com/path/to/your/image1.jpg" alt="Image 1">
+        </div>
+        <div class="media-item">
+            <h3>Audio 1</h3>
+            <audio controls>
+                <source src="https://example.com/path/to/your/audio1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div class="media-item">
+            <h3>Video 1</h3>
+            <video controls>
+                <source src="https://example.com/path/to/your/video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <!-- Add more media items as needed -->
+
+        <div>
+            <button onclick="prevMedia()">Previous</button>
+            <button onclick="nextMedia()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const mediaItems = document.querySelectorAll('.media-item');
+
+        function showMedia(index) {
+            mediaItems.forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextMedia() {
+            currentIndex = (currentIndex + 1) % mediaItems.length;
+            showMedia(currentIndex);
+        }
+
+        function prevMedia() {
+            currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+            showMedia(currentIndex);
+        }
+    </script>
+</body>
+</html>
